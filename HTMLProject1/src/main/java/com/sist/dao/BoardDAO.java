@@ -219,7 +219,7 @@ public class BoardDAO {
 				 bCheck=true;
 				
 				sql="UPDATE freeboard SET  "
-						    +"name=?,subject=?,content=?,pwd=?";
+						    +"name=?,subject=?,content=?,pwd=? "+"WHERE no="+no;
 				 ps=conn.prepareStatement(sql);
 				 // 실행 요청전에 ? 값 채우기
 				 ps.setString(1, vo.getName());
