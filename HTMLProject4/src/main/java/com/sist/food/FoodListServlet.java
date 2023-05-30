@@ -59,10 +59,10 @@ public class FoodListServlet extends HttpServlet {
 			out.println("<table class=table>");
 			out.println("<tr>");
 			out.println("<td width=30% align=center rowspan=4>");
-			out.println("<img src="+vo.getPoster()+" style=\"width:240;height:150px\">");
+			out.println("<a href=FoodDetailServlet?fno="+vo.getFno()+"><img src="+vo.getPoster()+" style=\"width:240;height:150px\"></a>");
 			out.println("</td>");
 			out.println("<td width=70%><b>");
-			out.println(vo.getName()+"<span style=\"color:orange\">"+vo.getScore()+"</span>");
+			out.println("<a href=FoodDetailServlet?fno="+vo.getFno()+">"+vo.getName()+"</a>&nbsp;<span style=\"color:orange\">"+vo.getScore()+"</span>");
 			out.println("</b></td>");
 			out.println("</tr>");
 			out.println("<tr>");
