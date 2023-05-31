@@ -215,7 +215,7 @@ public class FoodDAO {
 			  vo.setTitle(rs.getString(2));
 			  vo.setSubject(rs.getString(3));
 			  String poster=rs.getString(4);
-			  poster=poster.replace("#", "&");
+			  poster=poster.replace("#", "& ");
 			  vo.setPoster(poster);
 			  vo.setLink("https://www.mangoplate.com"+rs.getString(5));
 			  
