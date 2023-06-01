@@ -58,7 +58,7 @@ public class SeoulLocationServlet extends HttpServlet {
 		out.println("<body>");
 
 		out.println("<div class=container>");
-		out.println("<div class=row>");
+		
 		
 
 		out.println("<h1>서울 명소</h1>");
