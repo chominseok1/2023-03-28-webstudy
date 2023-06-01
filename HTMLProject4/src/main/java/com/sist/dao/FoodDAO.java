@@ -233,7 +233,10 @@ public class FoodDAO {
 				vo.setFno(rs.getInt(1));
 				vo.setName(rs.getString(2));
 				String poster=rs.getString(3);
-				poster=poster.substring(0, poster.indexOf("^"));
+				if(poster.contains("^"))
+				{
+					poster=poster.substring(0, poster.indexOf("^"));
+				}
 				poster=poster.replaceAll("#", "& ");
 				vo.setPoster(poster);
 				vo.setScore(rs.getDouble(4));
