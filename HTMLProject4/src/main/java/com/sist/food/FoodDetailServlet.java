@@ -10,46 +10,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import com.sist.dao.*;
-// 속성 => class 불러올때
+// 속성 => class 
+
 @WebServlet("/FoodDetailServlet")
 public class FoodDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 전송 => 브라우저 전송(response)
-		response.setContentType("text/html;charset=UTF-8"); // 응답정보 response
-		// 전페이지(FOODListServlet)에서 전송된 값(fno)을 받는다
+		// 전송 => 브라우저 전송 (response)
+		response.setContentType("text/html;charset=UTF-8");
+		// 전페이지(FoodListServlet)에서 전송된 값을 받는다 => fno
 		String fno=request.getParameter("fno");
-		// request는 사용자가 전송한 데이터를 받을 때 사용
-		// request 사용자 요청정보
-		// 웹=> 객체 (request,response,session) => 기타적인 내장 객체 =>cookie
+		// request는 사용자가 전송한 데이터를 받을 때 사용 
+		// 요청 정보 
+		// 웹 => 객체 (request,response,session) => cookie 
 		FoodDAO dao=FoodDAO.newInstance();
 		FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
 		String addr=vo.getAddress();
 		String addr1=addr.substring(0,addr.lastIndexOf("지번"));
 		String addr2=addr.substring(addr.lastIndexOf("지")+3);
-		// vo에 저장된 데이터를 html에서 출력
+		// vo에 저장된 데이터를 HTML에서 출력 
 		PrintWriter out=response.getWriter();
-		// html을 출력 => 오라클에서 받은 결과값 출력
+		// HTML을 출력 => 오라클에서 받은 결과값 출력 
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<script type=\"text/javascript\" src=\"//dapi.kakao.com/v2/maps/sdk.js?appkey=9965c727d3306713c47391be682e4be9&libraries=services\"></script>");
+		out.println("<script type=\"text/javascript\" src=\"//dapi.kakao.com/v2/maps/sdk.js?appkey=b18319530b6d6d62d5c86a8807893413&libraries=services\"></script>");
 		out.println("<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\">");
-
-		out.println("<style>");//여기부터
-
+		out.println("<style>");
 		out.println(".container{margin-top:50px}");
-
 		out.println(".row{");
-
-		out.println("margin:0px auto;");
-
-		out.println("width:800px}</style>"); // 여기까지 오버라이딩 변경해서 사용
+		out.println("margin:0px auto;");// 가운데 정렬
+		out.println("width:1024px}</style>");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<div class=container>");
-		
 		out.println("<div class=row>");
-		// 이미지 5개 출력
+		// 이미지 5개 
 		String poster=vo.getPoster();
 		poster=poster.replace("#", "&");
 		StringTokenizer st=new StringTokenizer(poster,"^");
@@ -65,22 +60,19 @@ public class FoodDetailServlet extends HttpServlet {
 		out.println("</table>");
 		out.println("</div>");
 		out.println("<div class=row>");
-		//lg , sm , md , xs 해상도 큰거lg 중간사이즈 sm row 전체12에서 8:4 
-		out.println("<div class=col-sm-8>"); // 얘랑
-		// 상세보기
+		// lg , sm , md , xs 
+		out.println("<div class=col-sm-8>");
+		// 상세보기 
 		out.println("<table class=table>");
 		out.println("<tr>");
 		out.println("<td>");
-		out.println("<h3>"+vo.getName()+"&nbsp;<span style=\"color:orange\">"+vo.getScore()+"</span></h3>");
+		out.println("<h3>"+vo.getName()+"&nbsp;<span style=\"color:orange\">"
+		              +vo.getScore()+"</span></h3>");
 		out.println("</td>");
 		out.println("</tr>");
-		
-		
+		out.println("</table>");
 		out.println("<div style=\"height:20px\"></div>");
 		out.println("<table class=table>");
-		
-		
-		
 		out.println("<tr>");
 		out.println("<th width=20%>주소</th>");
 		out.println("<td width=80%>"+addr1+"<br><sub>지번:"+addr2+"</sub>"+"</td>");
@@ -109,32 +101,33 @@ public class FoodDetailServlet extends HttpServlet {
 		if(!vo.getMenu().equals("no"))
 		{
 			out.println("<th width=20%>메뉴</th>");
-		    out.println("<td width=80%>");
-		    st=new StringTokenizer(vo.getMenu(),"원");
-		    out.println("<ul>");
-		    while(st.hasMoreTokens())
-		    {
-		    	out.println("<li>");
-		    	out.println(st.nextToken()+"원");
-		    	out.println("</li>");
-		    }
-		    out.println("</ul>");
-		    out.println("</td>");
-		    out.println("</tr>");
+			out.println("<td width=80%>");
+			st=new StringTokenizer(vo.getMenu(),"원");
+			out.println("<ul>");
+			while(st.hasMoreTokens())
+			{
+				out.println("<li>");
+				out.println(st.nextToken()+"원");
+				out.println("</li>");
+			}
+			out.println("</ul>");
+			out.println("</td>");
+			out.println("</tr>");
 		}
 		out.println("<tr>");
 		out.println("<td class=text-right colspan=2>");
-		out.println("<a href=# class=\"btn btn-xs btn-danger\">예약하기</a>"); // 빨강
-		out.println("<a href=# class=\"btn btn-xs btn-success\">찜하기</a>"); // 초록
-		out.println("<a href=# class=\"btn btn-xs btn-warning\">좋아요</a>"); // 주황
-		out.println("<a href=\"FoodListServlet?cno="+vo.getCno()+"\"# class=\"btn btn-xs btn-info\">목록</a>"); // 하늘색 btn
+		out.println("<a href=# class=\"btn btn-xs btn-danger\">예약하기</a>");
+		out.println("<a href=# class=\"btn btn-xs btn-success\">찜하기</a>");
+		out.println("<a href=# class=\"btn btn-xs btn-warning\">좋아요</a>");
+		out.println("<a href=\"FoodListServlet?cno="+vo.getCno()+"\" class=\"btn btn-xs btn-info\">목록</a>");
 		out.println("</td>");
 		out.println("</tr>");
 		out.println("</table>");
 		out.println("</div>");
-		out.println("<div class=col-sm-4>"); // 얘 더했을 때 12 
-		// 지도 출력
-		  out.write(" <div id=\"map\" style=\"width:100%;height:350px;\"></div>\r\n");
+		out.println("<div class=col-sm-4>");
+		// 지도출력 
+		out.println("<script type=\"text/javascript\" src=\"//dapi.kakao.com/v2/maps/sdk.js?appkey=b18319530b6d6d62d5c86a8807893413&libraries=services\"></script>");
+		out.write("<div id=\"map\" style=\"width:100%;height:350px;\"></div>\r\n");
 	      out.write("		<script>\r\n");
 	      out.write("		var mapContainer = document.getElementById('map'), // 지도를 표시할 div \r\n");
 	      out.write("		    mapOption = {\r\n");
@@ -178,10 +171,17 @@ public class FoodDetailServlet extends HttpServlet {
 	      out.write("		});    \r\n");
 	      out.write("		</script>\r\n");
 		out.println("</div>");
-		out.println("</div>"); // row 닫기
-		out.println("</div>"); //container
-		out.println("</body>");
-		out.println("</html>");
+		out.println("</div>");//row
+		out.println("</div>");//container
+		out.println("</body>");//row
+		out.println("</html>");//row
+		
 	}
 
 }
+
+
+
+
+
+
