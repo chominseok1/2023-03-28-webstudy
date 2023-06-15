@@ -160,7 +160,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="JDBCCMSProject" path="/JDBCCMSProject" reloadable="true" source="org.eclipse.jst.jee.server:JDBCCMSProject"/><Context docBase="ProcedureCURDProject" path="/ProcedureCURDProject" reloadable="true" source="org.eclipse.jst.jee.server:ProcedureCURDProject"/><Context docBase="JSPLastProject" path="/JSPLastProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPLastProject"/><Context docBase="HTMLProject4" path="/HTMLProject4" reloadable="true" source="org.eclipse.jst.jee.server:HTMLProject4"/></Host>
+      <Context docBase="JDBCCMSProject" path="/JDBCCMSProject" reloadable="true" source="org.eclipse.jst.jee.server:JDBCCMSProject"/><Context docBase="ProcedureCURDProject" path="/ProcedureCURDProject" reloadable="true" source="org.eclipse.jst.jee.server:ProcedureCURDProject"/><Context docBase="JSPLastProject" path="/JSPLastProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPLastProject"/><Context docBase="HTMLProject4" path="/HTMLProject4" reloadable="true" source="org.eclipse.jst.jee.server:HTMLProject4"/><Context docBase="JavaScriptBasicProject1" path="/JavaScriptBasicProject1" reloadable="true" source="org.eclipse.jst.jee.server:JavaScriptBasicProject1"/></Host>
     </Engine>
   </Service>
 </Server>
