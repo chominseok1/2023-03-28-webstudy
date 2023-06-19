@@ -1,0 +1,61 @@
+<!-- onclick -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+let i=0; // open(0)/close(1) 
+window.onload=function(){
+	let r=document.querySelector("#read");
+	// => css 제어할때는 <style>
+	r.onmouseover=function(){
+		r.style.cursor="pointer"
+	}
+	r.onmouseout=function(){
+		r.style.cursor="none"
+	}
+	r.onclick=function(){
+		if(i==0)
+		{
+			let ss=document.querySelector("#s");
+			ss.style.display=''; //열어주기 공백 :open => show
+			r.textContent="닫기"
+			i=1; //1 주고
+		}
+		else
+		{ 
+			// 1일때 다시누르면 
+			let ss=document.querySelector("#s");
+			ss.style.display='none'; //닫기 none: close=> hide
+			r.textContent="더보기"
+			i=0;
+		}	
+	}
+	// form 태그에서 submit을 제거 => 이벤트 제거
+	// e.defaultPrevent()
+	document.querySelector("#click").onclick=function(){
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+	<a href="http://www.naver.com" id="click">Naver</a>
+	<p>
+  <pre>
+  	이 매체는 "파블로 오르텔스 마요르카 단장은 이강인의 매각을 서두르지 않고 있다"면서 "그는 마요르카를 위한 가장 좋은 조건을 찾기 위해 줄다리기를 하고 있는 중"이라고 주장했다.
+
+    이어 "루이스 캄포스 PSG 단장과 대화는 올바른 방향으로 진행되고 있다. 하지만 마무리가 되지 않고 있다"면서 
+    "바이아웃(이적 허용) 금액인 2200만 유로(약 308억 원)에 옵션이 대거 붙을 수 있다. PSG는 이 금액을 위해 선수를 포함시키는 거래를 협상했으나 
+    적어도 마요르카가 원하는 선수가 테이블 위에 오르지 않았다"고 덧붙였다.
+	
+	<span id="read">더보기</span>
+	<span style="display:none" id="s">
+    결국 마요르카가 이강인을 매각하는 과정에서 욕심을 내고 있는 모양새다. 
+    앞서 스페인 'OK디아리오' 역시 "마요르카가 PSG로부터 프랑스 출신 스트라이커 위고 에키티케(21)를 원했지만 
+    PSG가 에키티케를 즉시 전력감으로 보고 있어 거절했다. 임대 중인 율리안 드락슬러(30, 벤피카)도 있지만 배제된 상태"라고 전한 바 있다.
+    </span>
+  </pre>
+</body>
+</html>
