@@ -218,9 +218,9 @@ public class RecipeDAO {
 
 			  		+ "FROM(SELECT cno,title,chef,poster,hit "
 
-			  		+ "FROM recipe_example)) "
+			  		+ "FROM recipe_example ORDER BY cno ASC)) "
 
-			  		+ "WHERE num BETWEEN ? AND ?";
+			  		+ "WHERE num BETWEEN ? AND ? ";
 
 			  ps=conn.prepareStatement(sql);
 

@@ -174,11 +174,11 @@ public class FoodCategoryServlet extends HttpServlet {
 
 			String title=vo.getTitle();
 
-			if(title.length()>15)
+			if(title.length()>=10)
 
 			{
 
-				title=title.substring(0,15);
+				title=title.substring(0,10);
 
 			}
 
@@ -192,7 +192,7 @@ public class FoodCategoryServlet extends HttpServlet {
 
 			out.println("<div class=\"caption\">");
 
-			out.println("<p style=\"font-size:9px\">"+title+"</p>");
+			out.println("<p style=\"font-size:9px\">"+title+"&nbsp;"+vo.getHit()+vo.getCno()+"<br>"+vo.getChef()+"<br>"+"<b>"+vo.getCno()+"</b>"+"</p>");
 
 			out.println("</div>");
 
@@ -214,11 +214,11 @@ public class FoodCategoryServlet extends HttpServlet {
 
 		out.println("<ul class=pagination>");
 
-		if(startPage>1)
+		if(curpage>1)
 
 		{
 
-		  out.println("<li><a href=FoodCategoryServlet?page="+(startPage-1)+">&lt;</a></li>");
+		  out.println("<li><a href=FoodCategoryServlet?page="+(curpage-1)+">&lt;</a></li>");
 
 		}
 
@@ -234,7 +234,7 @@ public class FoodCategoryServlet extends HttpServlet {
 
 		{
 
-		  out.println("<li><a href=FoodCategroyServlet?page="+(endPage+1)+">&gt;</a></li>");
+		  out.println("<li><a href=FoodCategoryServlet?page="+(curpage+1)+">&gt;</a></li>");
 
 		}
 
