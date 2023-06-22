@@ -3,11 +3,14 @@
  <%
  	String mode=request.getParameter("mode");
  	if(mode==null)
- 		mode="1";
+ 		mode="0";
  	String jsp="";
  	int index=Integer.parseInt(mode);
  	switch(index)
  	{
+ 	case 0:
+ 		jsp="inner.jsp";
+ 		break;
  	case 1:
  		jsp="request.jsp";
  		break;
@@ -29,6 +32,9 @@
  	case 7:
  		jsp="session.jsp";
  		break;
+ 	case 8:
+ 		jsp="action.jsp";
+ 		break;
  		
  	}
  %>
@@ -44,17 +50,17 @@
 
 .container{
 	margin-top: 50px;
-	border:1px solid black;
+	/* border:1px solid black; */
 }
 .row{
  	margin: 0px auto;
  	width: 960px;
- 	height:150px;
- 	border:1px solid black;
+ 	height:100px;
+ 	/* border:1px solid black; */
 }
 .row1{
 	height: 500px;
-	border:1px solid black;
+	/* border:1px solid black; */
 }
 h1{
 	text-align: center;
@@ -71,6 +77,9 @@ h1{
 	 	 	<div class="col-sm-4">
 	 	 	  <div style="height: 100px"></div>
 	 	 	  <table class="table">
+	 	 	  <tr height="35">
+	 	 	   <td class="text-center"><a href="main.jsp?mode=0">Home</a></td>
+	 	 	  </tr>
 	 	 	  <tr height="35">
 	 	 	   <td class="text-center"><a href="main.jsp?mode=1">request</a></td>
 	 	 	  </tr>
@@ -91,6 +100,9 @@ h1{
 	 	 	  </tr>
 	 	 	   <tr height="35">
 	 	 	   <td class="text-center"><a href="main.jsp?mode=7">session</a></td>
+	 	 	  </tr>
+	 	 	   <tr height="35">
+	 	 	   <td class="text-center"><a href="main.jsp?mode=8">액션태그</a></td>
 	 	 	  </tr>
 	 	 	  </table>
 	 	 	</div>
