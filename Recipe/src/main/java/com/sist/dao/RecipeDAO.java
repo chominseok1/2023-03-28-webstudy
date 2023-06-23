@@ -146,7 +146,7 @@ public class RecipeDAO {
 
 			  String sql="INSERT INTO recipe_example VALUES("
 
-					  +"1,re_cno_seq.nextVal,?,?,?,?,?)"; //? 1 2 3 4 0번없음
+					  +"rp_cno_seq.nextVal,?,?,?,?,?)"; //? 1 2 3 4 0번없음
 
 			  /*
 
@@ -218,7 +218,7 @@ public class RecipeDAO {
 
 			  		+ "FROM(SELECT cno,title,chef,poster,hit "
 
-			  		+ "FROM recipe_example ORDER BY cno ASC)) "
+			  		+ "FROM recipe_practice ORDER BY cno ASC)) "
 
 			  		+ "WHERE num BETWEEN ? AND ? ";
 
