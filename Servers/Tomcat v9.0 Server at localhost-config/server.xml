@@ -60,7 +60,7 @@
          APR (HTTP/AJP) Connector: /docs/apr.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector connectionTimeout="20000" maxParameterCount="1000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" maxParameterCount="1000" port="80" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -160,7 +160,17 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="JDBCCMSProject" path="/JDBCCMSProject" reloadable="true" source="org.eclipse.jst.jee.server:JDBCCMSProject"/><Context docBase="ProcedureCURDProject" path="/ProcedureCURDProject" reloadable="true" source="org.eclipse.jst.jee.server:ProcedureCURDProject"/><Context docBase="JSPLastProject" path="/JSPLastProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPLastProject"/><Context docBase="HTMLProject4" path="/HTMLProject4" reloadable="true" source="org.eclipse.jst.jee.server:HTMLProject4"/><Context docBase="JavaScriptBasicProject1" path="/JavaScriptBasicProject1" reloadable="true" source="org.eclipse.jst.jee.server:JavaScriptBasicProject1"/><Context docBase="JavaScriptBasicProject2" path="/JavaScriptBasicProject2" reloadable="true" source="org.eclipse.jst.jee.server:JavaScriptBasicProject2"/><Context docBase="JavaScriptBasicProject3" path="/JavaScriptBasicProject3" reloadable="true" source="org.eclipse.jst.jee.server:JavaScriptBasicProject3"/><Context docBase="JSPBasicProject1" path="/JSPBasicProject1" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicProject1"/><Context docBase="Recipe" path="/Recipe" reloadable="true" source="org.eclipse.jst.jee.server:Recipe"/><Context docBase="JSPBasicProject2" path="/JSPBasicProject2" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicProject2"/><Context docBase="JSPBasicProject3" path="/JSPBasicProject3" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicProject3"/><Context docBase="JSPBasicProject4" path="/JSPBasicProject4" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicProject4"/></Host>
+      <Context docBase="JSPBasicProject5" path="/JSPBasicProject5" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicProject5">
+       <!-- Connection Pool 등록 -->
+       <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
+      </Context>
+      <Context docBase="JSPBasicDBCPProject" path="/JSPBasicDBCPProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPBasicDBCPProject">
+        <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
+      </Context>
+      <Context docBase="JQueryProject1" path="/JQueryProject1" reloadable="true" source="org.eclipse.jst.jee.server:JQueryProject1">
+       	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
+      </Context>
+      <Context docBase="JSPTemplateProject" path="/JSPTemplateProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPTemplateProject"/></Host>
     </Engine>
   </Service>
 </Server>
