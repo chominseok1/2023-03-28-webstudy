@@ -89,7 +89,7 @@
   	%>
   		 <div class="col-md-4">
     		<div class="thumbnail">
-      			<a href="#">
+      			<a href="food_detail.jsp?fno=<%=vo.getFno() %>">
        			 <img src="<%=vo.getPoster() %>"  style="width:100%">
        			 <div class="caption">
         		  <p><%=vo.getName() %></p>
