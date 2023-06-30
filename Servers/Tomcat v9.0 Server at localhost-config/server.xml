@@ -185,7 +185,11 @@
       <Context docBase="JSPMiddleProject5" path="/JSPMiddleProject5" reloadable="true" source="org.eclipse.jst.jee.server:JSPMiddleProject5">
       	<Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
       </Context>
-      <Context docBase="JSPMVCProject1" path="/JSPMVCProject1" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject1"/><Context docBase="JSPMVCProject2" path="/JSPMVCProject2" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject2"/><Context docBase="JSPMVCProject3" path="/JSPMVCProject3" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject3"/><Context docBase="JSPMVCProject4" path="/JSPMVCProject4" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject4"/><Context docBase="JSPMVCProject5" path="/JSPMVCProject5" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject5"/></Host>
+      <Context docBase="JSPMVCProject1" path="/JSPMVCProject1" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject1"/><Context docBase="JSPMVCProject2" path="/JSPMVCProject2" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject2"/><Context docBase="JSPMVCProject3" path="/JSPMVCProject3" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject3"/><Context docBase="JSPMVCProject4" path="/JSPMVCProject4" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject4"/><Context docBase="JSPMVCProject5" path="/JSPMVCProject5" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCProject5"/><Context docBase="JSPMVCFinalProject" path="/JSPMVCFinalProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPMVCFinalProject"/>
+      <Context docBase="JSPFinalProject" path="/JSPFinalProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPFinalProject">
+        <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
+      </Context>
+      <Context docBase="Project" path="/Project" reloadable="true" source="org.eclipse.jst.jee.server:Project"/></Host>
     </Engine>
   </Service>
 </Server>
