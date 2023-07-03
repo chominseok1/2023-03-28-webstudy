@@ -189,7 +189,11 @@
       <Context docBase="JSPFinalProject" path="/JSPFinalProject" reloadable="true" source="org.eclipse.jst.jee.server:JSPFinalProject">
         <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
       </Context>
-      <Context docBase="Project" path="/Project" reloadable="true" source="org.eclipse.jst.jee.server:Project"/></Host>
+      <Context docBase="Project" path="/Project" reloadable="true" source="org.eclipse.jst.jee.server:Project"/>
+      <Context docBase="0701Project" path="/0701Project" reloadable="true" source="org.eclipse.jst.jee.server:0701Project">
+      <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@211.238.142.118:1521:XE" username="hr"/>
+      </Context>
+      </Host>
     </Engine>
   </Service>
 </Server>
