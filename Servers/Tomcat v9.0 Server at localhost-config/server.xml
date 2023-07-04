@@ -190,8 +190,10 @@
         <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:XE" username="hr"/>
       </Context>
       <Context docBase="Project" path="/Project" reloadable="true" source="org.eclipse.jst.jee.server:Project"/>
+      
+      <Context docBase="JSPAjaxProject2" path="/JSPAjaxProject2" reloadable="true" source="org.eclipse.jst.jee.server:JSPAjaxProject2"/>
       <Context docBase="0701Project" path="/0701Project" reloadable="true" source="org.eclipse.jst.jee.server:0701Project">
-      <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@211.238.142.118:1521:XE" username="hr"/>
+       <Resource auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="10" maxIdle="8" maxWait="-1" name="jdbc/oracle" password="happy" type="javax.sql.DataSource" url="jdbc:oracle:thin:@211.238.142.118:1521:XE" username="hr"/>
       </Context>
       </Host>
     </Engine>
