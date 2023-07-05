@@ -57,7 +57,7 @@
          <c:if test="${s.index>=0 && s.index<12 }">
         <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" alt="">
-            <figcaption><a href="#">${vo.title }</a></figcaption>
+            <figcaption><a href="../food/food_category_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
           </figure>
         </li>
         </c:if>
@@ -73,7 +73,7 @@
          <c:if test="${s.index>=12 && s.index<18 }">
         <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" alt="">
-            <figcaption><a href="#">${vo.title }</a></figcaption>
+            <figcaption><a href="../food/food_category_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
           </figure>
         </li>
         </c:if>
@@ -88,7 +88,7 @@
          <c:if test="${s.index>=18 && s.index<30 }">
         <li>
           <figure><img class="radius-10 btmspace-10" src="${vo.poster }" alt="">
-            <figcaption><a href="#">${vo.title }</a></figcaption>
+            <figcaption><a href="../food/food_category_list.do?cno=${vo.cno }">${vo.title }</a></figcaption>
           </figure>
         </li>
         </c:if>
@@ -99,50 +99,17 @@
     <!-- ################################################################################################ -->
     <div class="flexslider carousel basiccarousel btmspace-80">
       <ul class="slides">
+         <c:forEach var="vo" items="${cList }" varStatus="s">
+         <c:if test="${s.index>=0 && s.index<12 }">
         <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
+          <figure><img class="radius-10 btmspace-10" src="${vo.poster }" alt="">
+            <figcaption><a href="../food/food_detail.do?fno=${vo.fno }">${vo.name }</a></figcaption>
           </figure>
         </li>
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
-        <li>
-          <figure><img class="radius-10 btmspace-10" src="../images/demo/320x185.png" alt="">
-            <figcaption><a href="#">Lorem Ipsum Dolor Sit Amet</a></figcaption>
-          </figure>
-        </li>
+        </c:if>
+       </c:forEach>
       </ul>
     </div>
-    <!-- ################################################################################################ -->
-    <h2 class="sectiontitle">Lorem Ipsum Dolor</h2>
-    <!-- ################################################################################################ -->
-    <ul class="nospace group">
-      <li class="one_half first">
-        <article><img class="imgl radius-10" src="../images/demo/100x100.gif" alt="">
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-        </article>
-      </li>
-      <li class="one_half">
-        <article><img class="imgl radius-10" src="../images/demo/100x100.gif" alt="">
-          <h6 class="heading"><a href="#">Lorem Ipsum Dolor</a></h6>
-          <p>Aenean semper elementum tellus, ut placerat leo. Quisque vehicula, urna sit amet.</p>
-        </article>
-      </li>
-    </ul>
     <!-- ################################################################################################ --> 
     <!-- / main body -->
     <div class="clear"></div>
