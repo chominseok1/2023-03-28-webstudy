@@ -163,6 +163,11 @@ public String food_detail(HttpServletRequest request,HttpServletResponse respons
 	request.setAttribute("main_jsp", "../food/food_detail.jsp");
 	
 	CommonModel.commonRequestData(request);
+	
+	// 댓글 읽기 
+	ReplyDAO rdao=ReplyDAO.newInstance();
+	List<ReplyVO> list=rdao.replyListData(1, Integer.parseInt(fno));
+	request.setAttribute("rlist", list);
 	return "../main/main.jsp";
 }
 }

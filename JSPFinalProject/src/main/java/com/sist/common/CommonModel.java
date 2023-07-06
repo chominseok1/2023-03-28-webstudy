@@ -5,9 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 import com.sist.dao.*;
 import com.sist.vo.*;
+// => Spring (공통모듈 => AOP) 
+// Spring => DI / AOP (사용법 : XML,Annotation)
 public class CommonModel {
 	public static void commonRequestData(HttpServletRequest request)
 	{
+		// 공통 모듈 
 		// footer에 들어가는 ss
 		FoodDAO dao=FoodDAO.newInstance();
 		// => 공지사항 => 최신 뉴스
