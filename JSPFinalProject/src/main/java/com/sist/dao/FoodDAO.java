@@ -147,13 +147,30 @@ public class FoodDAO {
 		return vo;
 	}
 	// 2.  실제 맛집 목록 
+	/*
+	 * CREATE OR REPLACE FUNCTION foodReplyData(
+		  pFno food_house.fno%TYPE 
+		) RETURN VARCHAR2
+		IS
+		  pMsg reply_all.msg%TYPE;
+		  pRow NUMBER;
+		BEGIN
+		 SELECT msg,rownum INTO pMsg,pRow
+		 FROM (SELECT msg FROM reply_all WHERE cno=pFno ORDER BY no DESC)
+		 WHERE rownum=1;
+		 
+		 RETURN pMsg;
+		END;
+		/
+	 */
 	public List<FoodVO> foodCategoryListData(int cno)
 	{
 		List<FoodVO> list=new ArrayList<>();
 		try
 		{
 			conn=db.getConnection();
-			String sql="SELECT fno,cno,poster,name,score,address "
+			String sql="SELECT fno,cno,poster,name,score,address,NVL(foodReplyData(fno),' ') as msg,"
+					+ "NVL(foodReplyName(fno),'') as rname "
 					+ "FROM food_house "
 					+ "WHERE cno=?";
 			ps=conn.prepareStatement(sql);
@@ -173,7 +190,8 @@ public class FoodDAO {
 				String addr=rs.getString("address");
 				addr=addr.substring(0,addr.indexOf("지번"));
 				vo.setAddress(addr.trim());
-				
+				vo.setMsg(rs.getString("msg"));
+				vo.setRname(rs.getString("rname"));
 				list.add(vo);
 			}
 		}catch(Exception ex)
