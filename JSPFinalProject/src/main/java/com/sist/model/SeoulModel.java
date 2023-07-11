@@ -46,11 +46,18 @@ public String seoul_detail(HttpServletRequest request,HttpServletResponse respon
 {
 	String no=request.getParameter("no");
 	String type=request.getParameter("type");
+	
 	SeoulDAO dao=SeoulDAO.newInstance();
 	SeoulVO vo=dao.seoulDetailData(Integer.parseInt(no), Integer.parseInt(type));
 	request.setAttribute("vo", vo);
 	request.setAttribute("type", type);
 	request.setAttribute("main_jsp", "../seoul/seoul_detail.jsp");
+	
+	String addr=vo.getAddress();
+	String addr1=addr.substring(addr.indexOf(" ")+1);
+	String addr2=addr1.substring(addr1.indexOf(" ")+1);
+	String addr3=addr2.substring(0,addr2.indexOf(" "));
+	request.setAttribute("addr", addr3.trim()+" 맛집");
 	CommonModel.commonRequestData(request);
 	return "../main/main.jsp";
 }

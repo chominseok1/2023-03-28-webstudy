@@ -4,7 +4,25 @@ import java.sql.*;
 import com.sist.vo.*;
 
 import oracle.jdbc.OracleTypes;
-
+/*
+ * 		 try
+	 {
+		getConnection()
+		insert
+		update
+		insert
+		commit()
+		 
+	 }catch(Exception ex)
+	 {
+	 	 rollback()
+		 ex.printStackTrace();
+	 }
+	 finally
+	 {
+		 disConnection();
+	 }
+ */
 import com.sist.common.*;
 public class ReplyDAO {
  private Connection conn;
@@ -188,4 +206,5 @@ public class ReplyDAO {
 		 db.disConnection(conn, cs);
 	 }
  }
+ 
 }
