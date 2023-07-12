@@ -1,12 +1,5 @@
 package com.sist.vo;
- /*
-  * 	CREATE TABLE reserve_day(
-  rno NUMBER,
-  rday NUMBER CONSTRAINT rd_rday_nn NOT NULL,
-  time VARCHAR2(200) CONSTRAINT rd_time_nn NOT NULL,
-  CONSTRAINT rd_rno_pk PRIMARY KEY(rno)
-);
-  */
+
 public class ReserveDayVO {
 	private int rno,rday;
 	private String time;
