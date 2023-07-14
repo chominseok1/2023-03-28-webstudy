@@ -134,4 +134,107 @@ public class NoticeDAO {
 	 }
 	 return vo;
  }
+ // 목록 => 이미 제작되어있음
+ // admin만
+ // 추가
+ public void noticeInsert(NoticeVO vo)
+ {
+	 try
+	 {
+		 conn=db.getConnection();
+		 String sql="INSERT INTO project_notice VALUES("
+		 		+ "pn_no_seq.nextval,?,?,?,?,?,SYSDATE,0)";
+		 ps=conn.prepareStatement(sql);
+		 ps.setString(1, vo.getId());
+		 ps.setString(2, vo.getName());
+		 ps.setInt(3, vo.getType());
+		 ps.setString(4, vo.getSubject());
+		 ps.setString(5, vo.getContent());
+		 // 갯수가 안맞으면 뜨는 오류 IN,OUT 입출력 오류 ? 번호 틀렸다
+		 /*
+		  *  null : URL => server.xml url주소를 잘못썼을때 나는 오류 
+		  *  실행 => 오류가 없고 화면에 데이터가 안들어 온다 : 오라클에서 COMMIT이 없는 
+		  *  
+		  */
+		 ps.executeUpdate();
+	 }catch(Exception ex)
+	 {
+		 ex.printStackTrace();
+	 }
+	 finally
+	 {
+		 db.disConnection(conn, ps);
+	 }
+ }
+ // 삭제 
+  	public void noticeDelete(int no)
+  	{
+  		try
+  		{
+  			conn=db.getConnection();
+  			String sql="DELETE FROM project_notice WHERE no=?";
+  			ps=conn.prepareStatement(sql);
+  			ps.setInt(1, no);
+  			ps.executeUpdate();
+  		}catch(Exception ex)
+  		{
+  			ex.printStackTrace();
+  		}
+  		finally
+  		{
+  			db.disConnection(conn, ps);
+  		}
+  	}
+ // 수정 
+  public NoticeVO noticeUpdateData(int no)
+  {
+	  NoticeVO vo=new NoticeVO();
+	  try
+	  {
+		  conn=db.getConnection();
+		  String sql="SELECT no,type,subject,content "
+		  			+ "FROM project_notice "
+		  			+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, no);
+		  ResultSet rs=ps.executeQuery();
+		  rs.next();
+		  vo.setNo(rs.getInt(1));
+		  vo.setType(rs.getInt(2));
+		  vo.setSubject(rs.getString(3));
+		  vo.setContent(rs.getString(4));
+		  rs.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  db.disConnection(conn, ps);
+	  }
+	  return vo;
+  }
+  public void noticeUpdate(NoticeVO vo)
+  {
+	  try
+	  {
+		  conn=db.getConnection();
+		  String sql="UPDATE project_notice SET "
+		  		+ "type=?,subject=?,content=? "
+		  		+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, vo.getType());
+		  ps.setString(2, vo.getSubject());
+		  ps.setString(3, vo.getContent());
+		  ps.setInt(4, vo.getNo());
+		  ps.executeUpdate();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  db.disConnection(conn, ps);
+	  }
+  }
 }
