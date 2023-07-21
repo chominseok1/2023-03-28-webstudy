@@ -19,8 +19,8 @@
           <li><a href="#0"><i class="entypo-brush"></i> 커뮤니티</a></li>
       	  <li><a href="#0"><i class="entypo-brush"></i> 묻고답하기</a></li>
       	  <li><a href="../mypage/mypage_reserve.do"><i class="entypo-brush"></i> 맛집예약</a></li>
-      	  <li><a href="#0"><i class="entypo-brush"></i> 장바구니</a></li>
-      	   <li><a href="#0"><i class="entypo-brush"></i> 구매내역</a></li>
+      	  <li><a href="../mypage/mypage_cart.do"><i class="entypo-brush"></i> 장바구니</a></li>
+      	   <li><a href="../mypage/mypage_buy.do"><i class="entypo-brush"></i> 구매내역</a></li>
       	  <li><a href="../mypage/mypage_jjim_list.do"><i class="entypo-brush"></i> 찜목록</a></li>
         </ul>
       </nav>  

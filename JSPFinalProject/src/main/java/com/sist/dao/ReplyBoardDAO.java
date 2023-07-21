@@ -122,11 +122,262 @@ public class ReplyBoardDAO {
 	  }
   }
   // 삭제 
+  public void ReplyBoardDelete(int no)
+  {
+	  try
+	  {
+		  conn=db.getConnection();
+		  String sql="SELECT group_id,isreply "
+		  		+ "FROM project_replyboard "
+		  		+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, no);
+		  ResultSet rs=ps.executeQuery();
+		  rs.next();
+		  int gi=rs.getInt(1);
+		  int isreply=rs.getInt(2);
+		  rs.close();
+		  
+		  if(isreply==1)
+		  {
+			  sql="DELETE FROM project_replyboard "
+			  		+"WHERE group_id=?";
+			  ps=conn.prepareStatement(sql);
+			  ps.setInt(1, gi);
+			  ps.executeUpdate();
+		  }
+		  else
+		  {
+			  sql="DELETE FROM project_replyboard "
+				  		+"WHERE no=?";
+			  ps=conn.prepareStatement(sql);
+			  ps.setInt(1, no);
+			  ps.executeUpdate();
+		  }
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  db.disConnection(conn, ps);
+	  }
+  }
   // 내용 보기
+  public ReplyBoardVO replyBoardDetailData(int no)
+  {
+	  ReplyBoardVO vo=new ReplyBoardVO();
+	  try
+	  {
+		  conn=db.getConnection();
+		  String sql="UPDATE project_replyboard SET "
+		  		+ "hit=hit+1 "
+		  		+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, no);
+		  ps.executeUpdate();
+		  
+		  sql="SELECT no,name,id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit "
+		  		+ "FROM project_replyboard "
+		  		+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, no);
+		  ResultSet rs=ps.executeQuery();
+		  rs.next();
+		  vo.setNo(rs.getInt(1));
+		  vo.setName(rs.getString(2));
+		  vo.setId(rs.getString(3));
+		  vo.setSubject(rs.getString(4));
+		  vo.setContent(rs.getString(5));
+		  vo.setDbday(rs.getString(6));
+		  vo.setHit(rs.getInt(7));
+		  rs.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  db.disConnection(conn, ps);
+	  } 
+	  return vo;
+  }
+  //수정
+  public ReplyBoardVO replyBoardUpdateData(int no)
+  {
+	  ReplyBoardVO vo=new ReplyBoardVO();
+	  try
+	  {
+		  conn=db.getConnection();
+		  String sql="SELECT no,name,id,subject,content,TO_CHAR(regdate,'YYYY-MM-DD'),hit "
+		  		+ "FROM project_replyboard "
+		  		+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, no);
+		  ResultSet rs=ps.executeQuery();
+		  rs.next();
+		  vo.setNo(rs.getInt(1));
+		  vo.setName(rs.getString(2));
+		  vo.setId(rs.getString(3));
+		  vo.setSubject(rs.getString(4));
+		  vo.setContent(rs.getString(5));
+		  vo.setDbday(rs.getString(6));
+		  vo.setHit(rs.getInt(7));
+		  rs.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  db.disConnection(conn, ps);
+	  } 
+	  return vo;
+  }
+  //실제 수정
+  public void replyBoardUpdate(ReplyBoardVO vo)
+  {
+	  try
+	  {
+		  conn=db.getConnection();
+		  String sql="UPDATE project_replyboard SET "
+		  		+ "subject=? , content=? "
+		  		+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setString(1, vo.getSubject());
+		  ps.setString(2, vo.getContent());
+		  ps.setInt(3, vo.getNo());
+		  
+		  ps.executeUpdate();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  db.disConnection(conn, ps);
+	  }
+  }
   // 관리자
   
   // 목록
+  public List<ReplyBoardVO> replyBoardAdminListData(int page)
+  {
+	  List<ReplyBoardVO> list=new ArrayList<ReplyBoardVO>();
+	  try
+	  {
+		  conn=db.getConnection();
+		  String sql="SELECT no,subject,name,TO_CHAR(regdate,'YYYY-MM-DD'),hit,isreply,group_step,num "
+		  		+ "FROM (SELECT no,subject,name,regdate,hit,isreply,group_step,rownum as num "
+		  		+ "FROM (SELECT no,subject,name,regdate,hit,isreply,group_step "
+		  		+ "FROM project_replyboard ORDER BY group_id DESC)) "
+		  		+ "WHERE num BETWEEN ? AND ? "
+		  		+ "AND group_step=0";
+		  ps=conn.prepareStatement(sql);
+		  int rowSize=10;
+		  int start=(rowSize*page)-(rowSize-1);
+		  int end=rowSize*page;
+		  ps.setInt(1, start);
+		  ps.setInt(2, end);
+		  ResultSet rs=ps.executeQuery();
+		  while(rs.next())
+		  {
+			  ReplyBoardVO vo=new ReplyBoardVO();
+			  vo.setNo(rs.getInt(1));
+			  vo.setSubject(rs.getString(2));
+			  vo.setName(rs.getString(3));
+			  vo.setDbday(rs.getString(4));
+			  vo.setHit(rs.getInt(5));
+			  vo.setIsreply(rs.getInt(6));
+			  list.add(vo);
+		  }
+		  rs.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  db.disConnection(conn, ps);
+	  }
+	  
+	  return list;
+  }
+  public int replyBoardAdminTotalPage()
+  {
+	  int total=0;
+	  try
+	  {
+		  conn=db.getConnection();
+		  String sql="SELECT CEIL(COUNT(*)/10.0) "
+		  		+ "FROM project_replyboard "
+		  		+ "WHERE group_step=0";
+		  ps=conn.prepareStatement(sql);
+		  ResultSet rs=ps.executeQuery();
+		  rs.next();
+		  total=rs.getInt(1);
+		  rs.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  db.disConnection(conn, ps);
+	  } 
+	  return total;
+  }
   // 답변 (새글)
+  public void replyBoardAdminInsert(int pno,ReplyBoardVO vo)
+  {
+	  try
+	  {
+		  conn=db.getConnection();
+		  conn.setAutoCommit(false);
+		  String sql="SELECT group_id FROM project_replyboard "
+		  		+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, pno);
+		  ResultSet rs=ps.executeQuery();
+		  rs.next();
+		  int gi=rs.getInt(1);
+		  rs.close();
+		  
+		  sql="INSERT INTO project_replyboard(no,id,name,subject,content,group_id,group_step,group_tab) "
+		  		+ "VALUES(pr_no_seq.nextval,?,?,?,?,?,1,1)";
+		  ps=conn.prepareStatement(sql);
+		  ps.setString(1, vo.getId());
+		  ps.setString(2, vo.getName());
+		  ps.setString(3, vo.getSubject());
+		  ps.setString(4, vo.getContent());
+		  ps.setInt(5, gi);
+		  ps.executeUpdate();
+		  
+		  sql="UPDATE project_replyboard SET "
+		  		+ "isreply=1 "
+		  		+ "WHERE no=?";
+		  ps=conn.prepareStatement(sql);
+		  ps.setInt(1, pno);
+		  ps.executeUpdate();
+		  
+		  conn.commit();
+	  }catch(Exception ex)
+	  {
+		  try
+		  {
+			  conn.rollback();
+		  }catch(Exception e) {}
+		  ex.printStackTrace();
+	  }
+	  finally
+	  {
+		  try
+		  {
+			  conn.setAutoCommit(true);
+		  }catch(Exception ex) {}
+		  db.disConnection(conn, ps);
+	  }
+  }
   // 삭제 
   // 수정
 }

@@ -140,4 +140,56 @@ public class AdminPageModel {
 	  dao.noticeUpdate(vo);
 	  return "redirect:../adminpage/notice_list.do";  
   }
+  // 답하기
+  @RequestMapping("adminpage/replyboard_list.do")
+  public String adminpage_replyboard_list(HttpServletRequest request,HttpServletResponse response)
+  {
+	  String page=request.getParameter("page");
+	  if(page==null)
+		  page="1";
+	  int curpage=Integer.parseInt(page);
+	  ReplyBoardDAO dao=ReplyBoardDAO.newInstance();
+	  List<ReplyBoardVO> list=dao.replyBoardAdminListData(curpage);
+	  int totalpage=dao.replyBoardTotalPage();
+	  request.setAttribute("list", list);
+	  request.setAttribute("curpage", curpage);
+	  request.setAttribute("totalpage", totalpage);
+	  request.setAttribute("adminpage_jsp", "../adminpage/replyboard_list.jsp");
+	  request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
+	  return "../main/main.jsp";
+  }
+  @RequestMapping("adminpage/replyboard_insert.do")
+  public String adminpage_replyboard_insert(HttpServletRequest request,HttpServletResponse response)
+  {
+	  String no=request.getParameter("no");
+	  request.setAttribute("no", no);
+	  request.setAttribute("adminpage_jsp", "../adminpage/replyboard_insert.jsp");
+	  request.setAttribute("main_jsp", "../adminpage/adminpage_main.jsp");
+	  return "../main/main.jsp";
+	 
+  }
+  @RequestMapping("adminpage/replyboard_insert_ok.do")
+  public String adminpage_replyboard_insert_ok(HttpServletRequest request,HttpServletResponse response)
+  {
+	  try
+	  {
+		  request.setCharacterEncoding("UTF-8");
+	  }catch(Exception ex) {}
+	  String subject=request.getParameter("subject");
+	  String content=request.getParameter("content");
+	  String pno=request.getParameter("pno");
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  String name=(String)session.getAttribute("name");
+	  
+	  ReplyBoardVO vo=new ReplyBoardVO();
+	  vo.setSubject(subject);
+	  vo.setContent(content);
+	  vo.setId(id);
+	  vo.setName(name);
+	  
+	  ReplyBoardDAO dao=ReplyBoardDAO.newInstance();
+	  dao.replyBoardAdminInsert(Integer.parseInt(pno), vo);
+	  return "redirect:../adminpage/replyboard_list.do";
+  }
 }
